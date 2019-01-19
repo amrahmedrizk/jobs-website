@@ -1,0 +1,43 @@
+﻿@model jobwebsitetwo.Models.applyforjobs
+
+@{
+    ViewBag.Title = "detailsof";
+    Layout = "~/Views/shared/_mainlayout.cshtml";
+}
+
+<h2>detailsof</h2>
+
+<div>
+    <h4>applyforjobs</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.jobs.jobtitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jobs.jobtitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.massage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.massage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.applaydate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.applaydate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

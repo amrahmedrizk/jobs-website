@@ -1,0 +1,33 @@
+﻿@model IEnumerable<jobwebsitetwo.Models.jobsbypublish>
+
+@{
+    ViewBag.Title = "getjobsbypublisher";
+    Layout = "~/Views/shared/_mainlayout.cshtml";
+}
+
+<h2>getjobsbypublisher</h2>
+
+@foreach(var item in Model)
+{
+    <div>
+        @Html.DisplayFor(model => item.hh)
+    </div>
+    <div class="row">
+        @foreach(var subitem in item.items)
+        {
+            <div class="col-md-3">
+                @Html.DisplayFor(model => subitem.user.UserName)
+                @Html.DisplayFor(model => subitem.massage)
+                @Html.DisplayFor(model => subitem.applaydate)
+            </div>
+        }
+    </div>
+}
+
+
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>*@
+ 

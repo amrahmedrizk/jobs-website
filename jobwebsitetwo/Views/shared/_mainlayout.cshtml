@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@Page.Title</title>
+
+    <link href="~/content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/content/font.css" rel="stylesheet" />
+    <link href="~/content/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <!--navbar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">
+                    <img src="#" />
+                </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="~/home/index">
+                            <i class="glyphicon glyphicon-home"></i>
+                            home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/home/index">
+                            <i class="glyphicon glyphicon-folder-open"></i>
+                           types
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/home/index">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            about
+                        </a>
+                    </li>
+                    <li>
+                        @using (Html.BeginForm("search", "home", FormMethod.Post))
+                        {
+                       <input type="text" name="searchname" id="searchnames" placeholder="search here" />
+                        }
+                    
+                    </li>
+                </ul>
+               <!--parital view-->
+                @Html.Partial("_login")
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row" style="margin-bottom:200px;margin-top:100px;">
+            @RenderBody()
+        </div>
+    </div>
+
+    <!--footer-->
+    <footer class="navbar navbar-fixed-bottom myfooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>
+                        <i class="glyphicon glyphicon-question-sign"></i>
+                        who are we?
+                    </h3>
+                    <p>
+                       the first web-site
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h3>
+                        <i class="glyphicon glyphicon-globe"></i>
+                        links
+                    </h3>
+                    <ul>
+                        <li><a href="#">general</a></li>
+                        <li><a href="#">out-side</a></li>
+                        <li><a href="#">in-side</a></li>
+                        <li><a href="#">others</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>
+                        <i class="glyphicon glyphicon-envelope"></i>
+                        contact us
+                    </h3>
+                    <ul>
+                        <li><a href="#">facebook</a></li>
+                        <li><a href="#">twitter</a></li>
+                        <li><a href="#">youtube</a></li>
+                        <li><a href="#">leave message</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="subfooter">
+            <span>all rights reserved</span>
+        </div>
+    </footer>
+
+    <script src="~/scripts/jquery.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    @RenderSection("sc", required: false)
+</body>
+</html>

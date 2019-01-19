@@ -1,0 +1,97 @@
+﻿@model jobwebsitetwo.Models.jobs
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/shared/_mainlayout.cshtml";
+}
+<script src="~/scripts/ckeditor/ckeditor.js"></script>
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("edit", "jobs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <div class="alert alert-danger" style="display:none;" id="b">
+            <span id="c"></span>
+        </div>
+        <h4>jobs</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.jobtitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.jobtitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.jobtitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.jobcontent, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.jobcontent, new { htmlAttributes = new { @class = "form-control", @id= "jobcontent" } })
+                @Html.ValidationMessageFor(model => model.jobcontent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.jobimage, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="upload" id="myimage"/>
+                @Html.ValidationMessageFor(model => model.jobimage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.categoryid, "categoryid", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("categoryid", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.categoryid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" id="save" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section sc
+{
+    <script>
+        $(function () {
+            $("#save").click(function () {
+                if ($("#myimage").val() != "") {
+                    var filename = document.getElementById("myimage").value;
+                    var extentioon = filename.substr(filename.lastIndexOf('.') + 1);
+                    var extarray = ["png", "jpg","bmp","gif"];
+                    if ($.inArray(extentioon, extarray) == -1)
+                    {
+                        $("#b").fadeIn();
+                        $("#c").append("you must choose a correct file");
+                        return false;
+                    }
+                    var filesize = document.getElementById('myimage').files[0].size / 1024 / 1024;
+                    if(filesize>1)
+                    {
+                        $("#b").fadeIn();
+                        $("#c").append("file size is too big");
+                        return false;
+                    }
+                }
+            });
+        });
+       
+
+    </script>
+    }
+<script>
+    CKEDITOR.replace("jobcontent");
+</script>

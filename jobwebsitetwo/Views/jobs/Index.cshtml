@@ -1,0 +1,52 @@
+﻿@model IEnumerable<jobwebsitetwo.Models.jobs>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/shared/_mainlayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.category.categoryname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jobtitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jobcontent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jobimage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.category.categoryname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jobtitle)
+        </td>
+        <td>
+            @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.jobcontent).ToString()))
+        </td>
+        <td>
+            <img src="~/uploads/@Html.DisplayFor(modelItem=>item.jobimage)" class="thumbnail" style="width:40px;height:40px;"/>
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

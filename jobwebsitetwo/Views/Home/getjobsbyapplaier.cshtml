@@ -1,0 +1,43 @@
+﻿@model IEnumerable<jobwebsitetwo.Models.applyforjobs>
+
+@{
+    ViewBag.Title = "getjobsbyapplaier";
+    Layout = "~/Views/shared/_mainlayout.cshtml";
+}
+
+<h2>getjobsbyapplaier</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.jobs.jobtitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.massage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.applaydate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.jobs.jobtitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.massage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.applaydate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Detailsof", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
